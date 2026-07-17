@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sober Life Wellness & Rehabilitation Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* ── PRIMARY: Dark Green ── */
+  --royal:       #0f5a43;
+  --royal-dark:  #0a3d2d;
+  --royal-light: #1c8a68;
+  --royal-pale:  #e6f2ee;
+  --royal-mid:   #0d4d3a;
+
+  /* ── BASE ── */
+  --white:       #ffffff;
+  --off-white:   #f3f8f6;
+  --text:        #0f1f1a;
+  --text-light:  #3d5c53;
+
+  /* ── ACCENT: Warm Gold/Amber ── */
+  --gold:        #c98a0a;
+  --gold-light:  #f5c842;
+
+  /* ── ACCENT 2: Sage/Mint for soft highlights ── */
+  --sage:        #9dc6b7;
+  --sage-pale:   #d9ece5;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--white);}
+
+/* TOP BAR */
+#topbar{background:var(--royal-dark);color:var(--white);text-align:center;padding:8px 16px;font-size:15px;letter-spacing:.5px;}
+#topbar a{color:var(--gold-light);text-decoration:none;}
+#topbar a:hover{color:var(--white);}
+
+/* NAVBAR */
+nav{background:var(--white);position:sticky;top:0;z-index:1000;box-shadow:0 2px 16px rgba(4,98,0,.13);}
+.nav-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:flex-start;padding:20px 30px;}
+.logo{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--royal);line-height:1.1;}
+/*.logo span{color:var(--gold);display:block;gap:0;position:relative;font-size:18px;font-weight:400;letter-spacing:4px;text-transform:uppercase;}*/
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center;}
+.nav-links a{color:var(--text);text-decoration:none;font-weight:600;font-size:20px;padding:8px 12px;border-radius:8px;transition:.2s;}
+.nav-links a:hover,.nav-links a.active{background:var(--royal-pale);color:var(--royal);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--royal);border-radius:2px;transition:.3s;}
+.mobile-menu{display:none;background:var(--white);box-shadow:0 8px 24px rgba(4,98,0,.12);}
+.mobile-menu a{display:block;padding:14px 24px;color:var(--text);text-decoration:none;font-weight:600;border-bottom:1px solid var(--royal-pale);}
+.mobile-menu a:hover{color:var(--royal);background:var(--royal-pale);}
+
+/* PAGES */
+.page{display:none;}
+.page.active{display:block;}
+
+/* HERO */
+#hero-section{position:relative;min-height:90vh;display:flex;align-items:flex-end;background:linear-gradient(160deg,var(--royal-dark) 0%,var(--royal) 60%,var(--royal-light) 100%);overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url center/cover no-repeat;opacity:10.00;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,61,0,.85) 0%,rgba(4,98,0,.35) 60%,transparent 100%);}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:auto;padding:60px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;width:100%;}
+.hero-text h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,62px);color:var(--white);line-height:1.1;margin-bottom:18px;}
+.hero-text h1 em{color:var(--gold-light);font-style:normal;}
+.hero-text p{color:rgba(255,255,255,.85);font-size:17px;line-height:1.7;margin-bottom:28px;}
+.btn{display:inline-block;padding:14px 30px;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;transition:.25s;cursor:pointer;border:none;}
+.btn-white{background:var(--white);color:var(--royal);}
+.btn-white:hover{background:var(--sage-pale);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.7);margin-left:12px;}
+.btn-outline:hover{background:rgba(255,255,255,.15);}
+.hero-card{background:rgba(255,255,255,.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:28px;color:var(--white);}
+.hero-card h3{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;color:var(--gold-light);}
+.hero-stat{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.hero-stat .num{font-size:30px;font-weight:700;color:var(--white);}
+.hero-stat p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.3;}
+
+/* SECTIONS */
+.section{padding:80px 24px;}
+.section-inner{max-width:1200px;margin:auto;}
+.section-badge{display:inline-block;background:var(--royal-pale);color:var(--royal);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:12px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,40px);color:var(--text);line-height:1.2;margin-bottom:16px;}
+.section-title em{color:var(--royal);font-style:normal;}
+.section-sub{color:var(--text-light);font-size:16px;line-height:1.7;max-width:600px;}
+
+/* SERVICES GRID */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:48px;}
+.service-card{background:var(--white);border:1.5px solid var(--royal-pale);border-radius:16px;padding:28px;transition:.3s;}
+.service-card{padding:0; overflow:hidden; border-radius:18px;}
+.service-icon{width:100%; height:220px; overflow:hidden; border-radius:18px 18px 0 0;}
+.service-icon img{width:100%; height:100%; object-fit:cover; transition:.4s;}
+.service-card:hover .service-icon img{transform:scale(1.05);}
+.service-card h3,
+.service-card p{padding:0 24px;}
+.service-card h3{margin-top:22px;}
+.service-card p{padding-bottom:24px;}
+.service-card:hover{border-color:var(--royal);transform:translateY(-4px);box-shadow:0 12px 32px rgba(4,98,0,.12);}
+.service-icon{width:100%;height:180px;background:var(--royal-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px; overflow:hidden;}
+.service-icon img{width:100%; height:100%; object-fit:cover; display:block;}
+.service-card h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px;color:var(--text);}
+.service-card p{color:var(--text-light);font-size:14px;line-height:1.65;}
+
+/* TESTIMONIALS */
+.testimonials-section{background:var(--royal);padding:80px 24px;}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px;}
+.testi-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:28px;color:var(--white);}
+.testi-stars{color:var(--gold-light);font-size:18px;margin-bottom:12px;}
+.testi-card p{font-size:15px;line-height:1.7;font-style:italic;margin-bottom:16px;color:rgba(255,255,255,.9);}
+.testi-author{font-weight:700;color:var(--gold-light);font-size:14px;}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:32px;}
+.cert-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;text-align:center;color:var(--white);}
+.cert-card .cert-icon{font-size:36px;margin-bottom:10px;}
+.cert-card h4{font-size:14px;font-weight:700;color:var(--gold-light);}
+.cert-card p{font-size:12px;color:rgba(255,255,255,.7);margin-top:4px;}
+
+/* MAP */
+.map-section{background:var(--off-white);padding:80px 24px;}
+.map-wrapper{border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(4,98,0,.12);margin-top:40px;height:420px;}
+.map-wrapper iframe{width:100%;height:100%;border:none;}
+
+/* FOOTER */
+footer{background:var(--royal-dark);color:var(--white);padding:60px 24px 24px;}
+.footer-inner{max-width:1200px;margin:auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:12px;}
+.footer-desc{color:rgba(255,255,255,.65);font-size:14px;line-height:1.7;}
+.footer-links h4{font-weight:700;margin-bottom:16px;color:var(--gold-light);font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+.footer-links a{display:block;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;margin-bottom:8px;transition:.2s;}
+.footer-links a:hover{color:var(--white);}
+.social-row{display:flex;gap:12px;margin-top:16px;}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;transition:.2s;}
+.social-btn:hover{transform:translateY(-3px);}
+.s-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.s-yt{background:#ff0000;}
+.s-fb{background:#1877f2;}
+.s-wa{background:#25d366;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,.5);}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:28px;right:24px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.wa-btn{width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;text-decoration:none;transition:.25s;animation:pulse-wa 2.5s infinite;}
+.wa-btn:hover{transform:scale(1.1);}
+.wa-btn svg{width:32px;height:32px;fill:var(--white);}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4);}50%{box-shadow:0 4px 28px rgba(37,211,102,.7);}}
+
+/* POPUP CTA */
+.popup-overlay{position:fixed;inset:0;background:rgba(5,25,5,.55);z-index:2000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.popup-box{background:var(--white);border-radius:24px;padding:40px 36px;max-width:420px;width:90%;text-align:center;position:relative;box-shadow:0 24px 60px rgba(4,98,0,.22);}
+.popup-box h2{font-family:'Playfair Display',serif;color:var(--royal);font-size:26px;margin-bottom:8px;}
+.popup-box p{color:var(--text-light);font-size:15px;margin-bottom:28px;line-height:1.6;}
+.popup-btns{display:flex;flex-direction:column;gap:12px;}
+.popup-wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:var(--white);font-weight:700;font-size:15px;padding:14px;border-radius:12px;text-decoration:none;transition:.2s;}
+.popup-wa:hover{background:#1da851;}
+.popup-call{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--royal);color:var(--white);font-weight:700;font-size:15px;padding:14px;border-radius:12px;text-decoration:none;transition:.2s;}
+.popup-call:hover{background:var(--royal-dark);}
+.popup-close{position:absolute;top:14px;right:18px;font-size:22px;cursor:pointer;color:var(--text-light);background:none;border:none;line-height:1;}
+.popup-close:hover{color:var(--royal);}
+.hidden{display:none!important;}
+
+/* ABOUT */
+.about-hero{background:linear-gradient(135deg,var(--royal-dark),var(--royal));padding:60px 24px;color:var(--white);text-align:center;}
+.about-hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);margin-bottom:12px;}
+.about-hero p{color:rgba(255,255,255,.8);font-size:16px;max-width:600px;margin:auto;}
+.founder-section{background:var(--off-white);padding:80px 24px;}
+.founder-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:340px 1fr;gap:60px;align-items:center;}
+.founder-img{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--royal-pale),var(--royal-light));border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:80px;box-shadow:0 16px 48px rgba(4,98,0,.2);overflow:hidden;}
+.founder-img img{width:100%;height:100%;object-fit:cover;}.founder-badge{display:inline-flex;align-items:center;gap:8px;background:var(--royal);color:var(--white);padding:8px 18px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.founder-name{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,40px);color:var(--text);margin-bottom:4px;}
+.founder-title{color:var(--royal);font-weight:700;font-size:16px;margin-bottom:20px;}
+.founder-text{color:var(--text-light);font-size:15px;line-height:1.8;margin-bottom:20px;}
+.founder-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.tag{background:var(--royal-pale);color:var(--royal);padding:6px 14px;border-radius:50px;font-size:13px;font-weight:600;}
+.about-values{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:48px;}
+.val-card{background:var(--white);border-left:4px solid var(--royal);border-radius:0 12px 12px 0;padding:22px;box-shadow:0 2px 12px rgba(4,98,0,.07);}
+.val-card h4{font-weight:700;color:var(--royal);margin-bottom:6px;}
+.val-card p{color:var(--text-light);font-size:14px;line-height:1.6;}
+
+/* PACKAGES */
+.pkg-hero{background:linear-gradient(135deg,var(--royal-dark),var(--royal));padding:60px 24px;color:var(--white);text-align:center;}
+.pkg-hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);margin-bottom:12px;}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin-top:48px;}
+.pkg-card{border-radius:20px;overflow:hidden;border:2px solid var(--royal-pale);transition:.3s;}
+.pkg-card:hover{border-color:var(--royal);transform:translateY(-6px);box-shadow:0 20px 48px rgba(4,98,0,.15);}
+.pkg-card.featured{border-color:var(--royal);box-shadow:0 12px 40px rgba(4,98,0,.18);}
+.pkg-header{background:var(--royal);padding:28px;color:var(--white);text-align:center;position:relative;}
+.pkg-card.featured .pkg-header{background:var(--royal-dark);}
+.pkg-badge{position:absolute;top:12px;right:12px;background:var(--gold);color:var(--white);font-size:10px;font-weight:700;padding:4px 10px;border-radius:50px;letter-spacing:1px;text-transform:uppercase;}
+.pkg-header h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:4px;}
+.pkg-duration{background:rgba(255,255,255,.15);display:inline-block;padding:6px 16px;border-radius:50px;font-size:13px;font-weight:700;margin-top:8px;}
+.pkg-body{padding:28px;background:var(--white);}
+.pkg-facility{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:14px;color:var(--text-light);}
+.pkg-facility::before{content:'✓';color:var(--royal);font-weight:700;flex-shrink:0;margin-top:1px;}
+.pkg-price{margin-top:20px;padding-top:20px;border-top:1px solid var(--royal-pale);text-align:center;}
+.pkg-price span{font-family:'Playfair Display',serif;font-size:28px;color:var(--royal);font-weight:700;}
+.pkg-price p{color:var(--text-light);font-size:12px;}
+
+/* FAMILY SUPPORT */
+.fam-hero{background:linear-gradient(135deg,var(--royal-dark),var(--royal));padding:60px 24px;color:var(--white);text-align:center;}
+.fam-hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);margin-bottom:12px;}
+.fam-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:48px;}
+.fam-card{background:var(--white);border-radius:20px;padding:36px 28px;border:1.5px solid var(--royal-pale);transition:.3s;}
+.fam-card:hover{border-color:var(--royal);box-shadow:0 12px 32px rgba(4,98,0,.12);}
+.fam-icon{width:100%;height:220px;background:var(--royal);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:48px;overflow:hidden;}
+.fam-icon img{width:100%; height:100%; object-fit:cover; display:block;}
+.fam-icon{width:100%; height:220px; overflow:hidden; border-radius:18px 18px 0 0;}
+.fam-icon img{width:100%; height:100%; object-fit:cover; transition:.4s;}
+.fam-card:hover 
+.fam-icon img{transform:scale(1.05);}
+.fam-card h3,
+.fam-card p{padding:0 24px;}
+.fam-card h3{margin-top:22px;}
+.fam-card p{padding-bottom:24px;}
+.fam-card:hover{border-color:var(--royal);transform:translateY(-4px);box-shadow:0 12px 32px rgba(4,98,0,.12);}
+.fam-card h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--text);margin-bottom:12px;}
+.fam-card p{color:var(--text-light);font-size:14px;line-height:1.7;}
+.fam-card ul{margin-top:12px;padding-left:0;list-style:none;}
+.fam-card ul li{padding:6px 0;font-size:14px;color:var(--text-light);border-bottom:1px solid var(--royal-pale);display:flex;align-items:center;gap:8px;}
+.fam-card ul li::before{content:'›';color:var(--royal);font-size:18px;font-weight:700;}
+
+/* WELLNESS */
+.well-hero{background:linear-gradient(135deg,var(--royal-dark),var(--royal));padding:60px 24px;color:var(--white);text-align:center;}
+.well-hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);margin-bottom:12px;}
+.well-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:48px;}
+.well-card{background:var(--white);border-radius:20px;overflow:hidden;border:1.5px solid var(--royal-pale);transition:.3s;}
+.well-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(4,98,0,.14);border-color:var(--royal);}
+.well-img{height:180px;background:linear-gradient(135deg,var(--royal),var(--royal-light));display:flex;align-items:center;justify-content:center;font-size:56px;}
+.well-body{padding:24px;}
+.well-body h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px;}
+.well-body p{color:var(--text-light);font-size:14px;line-height:1.65;}
+.well-tag{display:inline-block;background:var(--royal-pale);color:var(--royal);font-size:11px;font-weight:700;padding:4px 10px;border-radius:50px;margin-top:12px;}
+
+/* INFINITE PHOTO GALLERY (Home page) */
+.infinite-gallery-section{padding:64px 0;background:var(--off-white);overflow:hidden;}
+.infinite-gallery-section .section-inner{padding-bottom:0;}
+.infinite-gallery-track-wrap{width:100%;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);}
+.infinite-gallery-track{display:flex;align-items:center;gap:20px;width:max-content;animation:infiniteGalleryScroll 32s linear infinite;will-change:transform;}
+.infinite-gallery-track-wrap:hover .infinite-gallery-track{animation-play-state:paused;}
+.infinite-gallery-item{flex:0 0 auto;width:280px;height:190px;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(4,98,0,.1);}
+.infinite-gallery-item img{width:100%;height:100%;object-fit:cover;display:block;}
+@keyframes infiniteGalleryScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (max-width:768px){.infinite-gallery-item{width:200px;height:140px;}.infinite-gallery-track{gap:14px;animation-duration:24s;}}
+@media (max-width:480px){.infinite-gallery-item{width:160px;height:110px;}.infinite-gallery-track{gap:10px;animation-duration:20s;}}
+
+/* GALLERY */
+.gal-hero{background:linear-gradient(135deg,var(--royal-dark),var(--royal));padding:60px 24px;color:var(--white);text-align:center;}
+.gal-hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);margin-bottom:12px;}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:40px;}
+.gal-item{border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--royal-pale);cursor:pointer;transition:.3s;position:relative;}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s;}
+.gal-item:hover{transform:scale(1.02);box-shadow:0 12px 32px rgba(4,98,0,.2);}
+.gal-item:hover img{transform:scale(1.05);}
+.gal-item .gal-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(3,61,0,.85));color:var(--white);padding:20px 16px 12px;font-size:13px;font-weight:600;}
+
+/* HERO FOUNDER BG */
+#home-page .hero-founder{position:relative;min-height:85vh;background:linear-gradient(160deg,var(--royal-dark) 0%,var(--royal) 100%);overflow:hidden;display:flex;align-items:center;}
+.founder-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1600&q=80') center 20%/cover no-repeat;opacity:1;}
+.founder-overlay{display:none;}
+.founder-hero-content{position:relative;z-index:2;max-width:1200px;margin:auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;width:100%;}
+.founder-hero-text{color:var(--white);}
+.founder-hero-text .eyebrow{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.9);padding:6px 18px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:inline-block;margin-bottom:20px;}
+.founder-hero-text h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,58px);line-height:1.1;margin-bottom:16px;text-shadow:0 2px 14px rgba(0,0,0,.65);}
+.founder-hero-text h1 span{color:var(--gold-light);}
+.founder-hero-text p{color:rgba(255,255,255,.8);font-size:16px;line-height:1.7;margin-bottom:28px;text-shadow:0 1px 8px rgba(0,0,0,.6);}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.founder-hero-img{display:flex;justify-content:center;}
+.founder-frame{width:320px;height:400px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.3);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:100px;backdrop-filter:blur(8px);flex-shrink:0;}
+
+
+/* STATS BAR */
+.stats-bar{background:var(--white);padding:40px 24px;border-bottom:1px solid var(--royal-pale);}
+.stats-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--royal);font-weight:700;}
+.stat-label{color:var(--text-light);font-size:13px;margin-top:4px;}
+
+/* GOLD ACCENT STRIPE – subtle visual element for section dividers */
+.gold-stripe{height:4px;background:linear-gradient(90deg,var(--royal-dark),var(--gold),var(--royal-dark));opacity:.6;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-content,.founder-hero-content,.founder-inner{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .hero-card{display:none;}
+  .founder-frame{width:220px;height:280px;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:992px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+}
+@media(max-width:640px){
+  .footer-grid{grid-template-columns:1fr;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .founder-frame{width:160px;height:200px;font-size:60px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  📧 Contact us: <a href="mailto:soberliferehabcentre@gmail.com">soberliferehabcentre@gmail.com</a> &nbsp;|&nbsp; 📞 <a href="tel:+918799476113">+91 87994 76113 </a> |  24/7 Support
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:10px;">
+  <img src="logo demo.png" alt="Logo Icon" style="width:auto;height:50px;flex-shrink:0;">
+  <div class="logo">SoberLife</div>
+</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" class="active" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" onclick="showPage('about')">About</a></li>
+      <li><a href="#" onclick="showPage('packages')">Packages</a></li>
+      <li><a href="#" onclick="showPage('family')">FamilySupport</a></li>
+      <li><a href="#" onclick="showPage('wellness')">WellnessActivities</a></li>
+      <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+      <li><a href="https://wa.me/918799476113" target="_blank" style="display:flex;align-items:center;gap:6px;background:#25d366;color:#fff;padding:8px 16px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px;">💬 WhatsApp</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="showPage('home');toggleMenu()">🏠 Home</a>
+    <a href="#" onclick="showPage('about');toggleMenu()">👥 About</a>
+    <a href="#" onclick="showPage('packages');toggleMenu()">📦 Packages</a>
+    <a href="#" onclick="showPage('family');toggleMenu()">❤️ Family Support</a>
+    <a href="#" onclick="showPage('wellness');toggleMenu()">🧘 Wellness Activities</a>
+    <a href="#" onclick="showPage('gallery');toggleMenu()">🖼️ Gallery</a>
+    <a href="https://wa.me/918799476113" target="_blank" style="color:#25d366;font-weight:700;">WhatsApp Us</a>
+  </div>
+</nav>
+
+<!-- ======================== HOME PAGE ======================== -->
+<div id="home-page" class="page active">
+
+  <!-- FOUNDER HERO SECTION -->
+  <div class="hero-founder">
+    <div class="founder-hero-bg"><img src="Entry.png" alt="Founder Background" style="width:100%;height:100%;object-fit:cover;"></div>
+    <div class="founder-hero-content">
+      <div class="founder-hero-text">
+        <div class="eyebrow">✦ Trusted Recovery Center</div>
+        <h1>A Journey to <span>Lasting Sobriety</span> Starts Here</h1>
+        <p>Led by our founder's vision of compassionate, evidence-based care, Sober Life Wellness has helped hundreds reclaim their lives with dignity and hope.</p>
+        <div class="hero-cta">
+          <a href="#" class="btn btn-white" onclick="showPage('packages')">View Programs</a>
+          <a href="https://wa.me/918799476113" target="_blank" class="btn btn-outline">💬 WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="founder-hero-img">
+      <div class="founder-hero-img-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOLD ACCENT STRIPE -->
+  <div class="gold-stripe"></div>
+
+  <!-- STATS BAR -->
+  <!-- <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">Lives Transformed</div></div>
+      <div class="stat-item"><div class="stat-num">+</div><div class="stat-label">Years of Experience</div></div>
+      <div class="stat-item"><div class="stat-num">85%</div><div class="stat-label">Success Rate</div></div>
+      <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Care & Support</div></div>
+    </div>
+  </div> -->
+
+  <!-- SERVICES -->
+  <div class="section" style="background:var(--off-white);">
+    <div class="section-inner">
+      <span class="section-badge">What We Offer</span>
+      <h2 class="section-title">Holistic <em>Recovery Programs</em></h2>
+      <p class="section-sub">We combine clinical expertise with compassionate care to create personalized recovery journeys.</p>
+      <div class="services-grid">
+        <div class="service-card"><div class="service-icon"><img src="deaddiction photo.png" alt="De-addiction Therapy"></div><h3>De-addiction Therapy</h3><p>Comprehensive detox and therapeutic support for alcohol, substances, and behavioural addictions.</p></div>
+        <div class="service-card"><div class="service-icon"><img src="Welness activitites homepage.png" alt="Wellness Activities"></div><h3>Wellness Activities</h3><p>Yoga, meditation, art therapy, and fitness programs to heal mind, body, and spirit.</p></div>
+        <div class="service-card"><div class="service-icon"><img src="family support.png" alt="Family Support"></div><h3>Family Support</h3><p>Structured family counselling, communication guidance, and emotional support sessions.</p></div>
+        <div class="service-card"><div class="service-icon"><img src="residential care.png" alt="Residential Care"></div><h3>Residential Care</h3><p>Safe, comfortable residential programs with round-the-clock professional supervision.</p></div>
+        <div class="service-card"><div class="service-icon"><img src="aftercare.png" alt="Aftercare Planning"></div><h3>Aftercare Planning</h3><p>Structured relapse prevention and long-term sobriety maintenance support.</p></div>
+        <div class="service-card"><div class="service-icon"><img src="grpp.png" alt="Group Counselling"></div><h3>Group Counselling</h3><p>Peer-led and professionally guided group therapy for community healing and accountability.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFINITE PHOTO GALLERY -->
+  <div class="infinite-gallery-section">
+    <div class="section-inner">
+      <span class="section-badge">Take A Look</span>
+      <h2 class="section-title">Our <em>Campus</em> in Pictures</h2>
+    </div>
+    <div class="infinite-gallery-track-wrap">
+      <div class="infinite-gallery-track">
+        <div class="infinite-gallery-item"><img src="Residential Campus.png" alt="Our Residential Campus" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Entry.png" alt="Entry Courtyard" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Poolside.png" alt="Poolside" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Lobby.png" alt="Lobby" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Conference hall.png" alt="Conference Hall" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Bedroom 1.png" alt="Bedroom" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="garden area.png" alt="Garden Area" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Courtyard main.png" alt="Central Courtyard" loading="lazy"></div>
+        <!-- duplicate set for seamless infinite loop -->
+        <div class="infinite-gallery-item"><img src="Residential Campus.png" alt="Our Residential Campus" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Entry.png" alt="Entry Courtyard" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Poolside.png" alt="Poolside" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Lobby.png" alt="Lobby" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Conference hall.png" alt="Conference Hall" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Bedroom 1.png" alt="Bedroom" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="garden area.png" alt="Garden Area" loading="lazy"></div>
+        <div class="infinite-gallery-item"><img src="Courtyard main.png" alt="Central Courtyard" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS & CERTIFICATES -->
+  <div class="testimonials-section">
+    <div class="section-inner">
+      <span class="section-badge" style="background:rgba(255,255,255,.15);color:var(--white);">Success Stories</span>
+      <h2 class="section-title" style="color:var(--white);">Words of <em style="color:var(--gold-light);">Transformation</em></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.75);">Real stories from those who found their way back to life.</p>
+      <div class="testi-grid">
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Sober Life gave me back my family and my sense of self. The staff treated me with dignity every single day."</p><div class="testi-author">— Rajesh M., 18 months sober</div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"The holistic approach here changed everything. Yoga, counselling, group therapy — it all worked together beautifully."</p><div class="testi-author">— Priya K., 2 years sober</div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"My son is a new person. The family support program helped us understand how to truly support him."</p><div class="testi-author">— Anita D., Parent</div></div>
+      </div>
+
+      <!-- CERTIFICATES -->
+      <!-- <h2 class="section-title" style="color:var(--white);margin-top:60px;">Our <em style="color:var(--gold-light);">Certifications</em></h2> -->
+      <div class="cert-grid">
+        <!-- <div class="cert-card"><div class="cert-icon">🏅</div><h4>NABH Accredited</h4><p>National Accreditation Board for Hospitals</p></div> -->
+        <!-- <div class="cert-card"><div class="cert-icon">📜</div><h4>ISO 9001:2015</h4><p>Quality Management Certified</p></div> -->
+        <!-- <div class="cert-card"><div class="cert-icon">🏆</div><h4>Ministry of Health</h4><p>Registered De-addiction Centre</p></div> -->
+        <!-- <div class="cert-card"><div class="cert-icon">⭐</div><h4>Best Rehab 2023</h4><p>State Health Excellence Award</p></div> -->
+      </div>
+    </div>
+  </div>
+  <!-- GOOGLE MAP -->
+  <div class="map-section">
+    <div class="section-inner">
+      <span class="section-badge">Find Us</span>
+      <h2 class="section-title">Our <em>Location</em></h2>
+      <p class="section-sub">Visit our centre or reach out — we're here to guide you towards recovery.</p>
+      <div class="map-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d59023.82378247844!2d73.11860852729508!3d22.391772632682198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m3!3m2!1d22.3541722!2d73.20490819999999!4m5!1s0x395fcb6085acb45d%3A0x6464ed11391e82d!2sSoberLife%20Rehab%20%26%20Nasha%20Mukti%20Kendra%2C%20Soberlife%20Farm%2C%20road%2C%20near%20Gspl%2C%20terminal%2C%20Sokhda%2C%20Mirsapura%2C%20Gujarat%20391745!3m2!1d22.4259944!2d73.1397594!5e0!3m2!1sen!2sin!4v1784275174682!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== ABOUT PAGE ======================== -->
+<div id="about-page" class="page">
+  <div class="about-hero">
+    <h1>About Sober Life Wellness</h1>
+    <p>A sanctuary of healing built on compassion, science, and the unwavering belief in every person's potential to recover.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <span class="section-badge">Who We Are</span>
+      <h2 class="section-title">More Than a <em>Rehab Center</em></h2>
+      <p class="section-sub">Founded over a decade ago, Sober Life Wellness is a premier rehabilitation and de-addiction center committed to transforming lives through evidence-based treatment, holistic wellness, and compassionate care. We believe that recovery is not just about stopping substance use — it is about rebuilding a life worth living.</p>
+      <div class="about-values">
+        <div class="val-card"><h4>🤝 Compassion</h4><p>Every individual is treated with dignity, empathy, and unconditional support throughout their journey.</p></div>
+        <div class="val-card"><h4>🔬 Evidence-Based</h4><p>Our programs are grounded in the latest clinical research and proven therapeutic methodologies.</p></div>
+        <div class="val-card"><h4>🌿 Holistic Healing</h4><p>We treat the whole person — mind, body, and spirit — through integrated wellness practices.</p></div>
+        <div class="val-card"><h4>🛡️ Confidentiality</h4><p>Complete privacy and confidentiality is maintained for every patient and their family.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOUNDER SECTION -->
+  <div class="founder-section">
+    <div class="section-inner">
+      <span class="section-badge">Meet the Visionary</span>
+      <h2 class="section-title">Our <em>Founder</em></h2>
+    </div>
+    <div class="founder-inner" style="max-width:1100px;margin:40px auto 0;">
+      <div class="founder-img"><img src="CEO-removebg-preview.png" height="510" width="auto" alt="Founder"></div>
+      <div>
+        <!-- <div class="founder-badge">✦ Founder & Director</div> -->
+        <h2 class="founder-name">Himanshu Singh</h2>
+        <div class="founder-badge">✦ Founder & Director</div>
+        <p class="founder-text">Himanshu Singh, Founder & Director, SoberLife Rehab & Wellness
+
+Recovery is more than my profession—it is my life's purpose.
+
+There was a time when addiction took control of my life, affecting my health, relationships, and future. Through determination, support, and a commitment to change, I discovered that recovery is not just about giving up substances—it's about rebuilding your life with hope, purpose, and self-respect.</p>
+        <p class="founder-text">My personal journey inspired me to establish SoberLife Rehab & Wellness —a place where individuals are treated with compassion, dignity, and understanding, never with judgment. Having walked the path of recovery myself, I understand the fears, struggles, and courage it takes to ask for help.</p>
+        <p class="founder-text">At SoberLife, our mission is simple: to provide a safe, supportive, and structured environment where people can heal, families can reconnect, and lives can be transformed. Every person who walks through our doors is welcomed with empathy and the belief that lasting recovery is possible.
+
+“If recovery changed my life, I believe it can change yours too. Every new beginning starts with one courageous step.”</p>
+        <!-- <div class="founder-tags">
+          <span class="tag">Addiction Specialist</span>
+          <span class="tag">NABH Certified</span>
+          <span class="tag">Family Therapy</span>
+          <span class="tag">Trauma-Informed Care</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== PACKAGES PAGE ======================== -->
+<div id="packages-page" class="page">
+  <div class="pkg-hero">
+    <h1>Our Recovery Programs</h1>
+    <p>Structured, comprehensive packages designed to support every stage of your healing journey.</p>
+  </div>
+  <div class="section">
+    <div class="section-inner">
+      <div class="pkg-grid">
+
+        <div class="pkg-card">
+          <div class="pkg-header" style="background:#A97142;color:#000;">
+            <h3 style="color:#000;">Bronze Program</h3>
+            <p style="color:#000;font-size:13px;">Foundation Recovery</p>
+            <div class="pkg-duration" style="color:#000;">🗓️ 30 - 90 Days</div>
+          </div>
+          <div class="pkg-body">
+            <!-- <div class="pkg-facility">Medical Detoxification & Assessment</div> -->
+            <div class="pkg-facility">Individual Counselling (3x/week)</div>
+            <div class="pkg-facility">Group Therapy Sessions</div>
+            <div class="pkg-facility">Basic Yoga & Meditation</div>
+            <div class="pkg-facility">Nutritional Meals (3x daily)</div>
+            <div class="pkg-facility">Shared Accommodation</div>
+            <div class="pkg-facility">Discharge Planning</div>
+            <div class="pkg-facility">1 Family Counselling Session</div>
+            <div class="pkg-price" style="padding-top:26px;"><span>₹25,000 Per Month</span><p>All-inclusive · Per person</p></div>
+          </div>
+        </div>
+
+        <div class="pkg-card featured">
+          <div class="pkg-header" style="background:#BCC6CC;color:#000;">
+            <div class="pkg-badge">Most Popular</div>
+            <h3 style="color:#000;">Silver Program</h3>
+            <p style="color:#000;font-size:13px;">Comprehensive Healing</p>
+            <div class="pkg-duration" style="color:#000;">🗓️ 30 - 90 Days</div>
+          </div>
+          <div class="pkg-body">
+            <!-- <div class="pkg-facility">Full Medical Detox & Psychiatric Evaluation</div> -->
+            <div class="pkg-facility">Daily Individual Counselling</div>
+            <!-- <div class="pkg-facility">CBT & DBT Therapy</div> -->
+            <div class="pkg-facility">Yoga, Meditation & Art Therapy</div>
+            <div class="pkg-facility">Semi-Private Room</div>
+            <div class="pkg-facility">Gourmet Nutritional Meals</div>
+            <div class="pkg-facility">Weekly Family Sessions (4 sessions)</div>
+            <div class="pkg-facility">Fitness & Recreational Activities</div>
+            <div class="pkg-facility">Aftercare Support (3 months)</div>
+            <div class="pkg-facility">Relapse Prevention Training</div>
+            <div class="pkg-price"><span>₹40,000 Per Month</span><p>All-inclusive · Per person</p></div>
+          </div>
+        </div>
+
+        <div class="pkg-card">
+          <div class="pkg-header" style="background:#D3AF37;color:#000;">
+            <h3 style="color:#000;">Gold Program</h3>
+            <p style="color:#000;font-size:13px;">Elite Transformation</p>
+            <div class="pkg-duration" style="color:#000;">🗓️ 30 - 90 Days</div>
+          </div>
+          <div class="pkg-body">
+            <!-- <div class="pkg-facility">Comprehensive Medical & Psychological Assessment</div> -->
+            <div class="pkg-facility">Daily Multi-Modal Therapy</div>
+            <div class="pkg-facility">Private Suite Accommodation</div>
+            <div class="pkg-facility">Personal Wellness Coach</div>
+            <div class="pkg-facility">All Wellness Activities (Yoga, Art, Music)</div>
+            <div class="pkg-facility">Unlimited Family Counselling</div>
+            <div class="pkg-facility">Customised Nutrition Plan</div>
+            <div class="pkg-facility">Trauma-Informed Therapy</div>
+            <div class="pkg-facility">Aftercare Support (6 months)</div>
+            <div class="pkg-facility">Airport Pickup & Drop</div>
+            <div class="pkg-price"><span>₹75,000 Per Month</span><p>All-inclusive · Per person</p></div>
+          </div>
+        </div>
+
+        <div class="pkg-card">
+          <div class="pkg-header">
+            <h3>Day Care Program</h3>
+            <p style="color:rgba(255,255,255,.8);font-size:13px;">Outpatient Support</p>
+            <div class="pkg-duration">🗓️ 30 - 90 Days</div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-facility">Morning Therapy Sessions (3 hrs/day)</div>
+            <div class="pkg-facility">Group Counselling</div>
+            <div class="pkg-facility">Yoga & Mindfulness</div>
+            <div class="pkg-facility">Psychiatric Consultations</div>
+            <div class="pkg-facility">Medication Management</div>
+            <div class="pkg-facility">Family Orientation Session</div>
+            <div class="pkg-facility">Weekly Progress Reports</div>
+            <div class="pkg-price"><span>₹15,000 Per Month</span><p>All-inclusive · Per person</p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== FAMILY SUPPORT PAGE ======================== -->
+<div id="family-page" class="page">
+  <div class="fam-hero">
+    <h1>Family Support Program</h1>
+    <p>Because healing isn't just for the individual — it's a journey the whole family takes together.</p>
+  </div>
+  <div class="section">
+    <div class="section-inner">
+      <span class="section-badge">We're Here for You Too</span>
+      <h2 class="section-title">Supporting <em>Families</em> Through Recovery</h2>
+      <p class="section-sub">Addiction affects the entire family system. Our specialized family support program empowers loved ones with the tools, knowledge, and emotional support to become active participants in recovery.</p>
+      <div class="fam-grid">
+
+        <div class="fam-card">
+          <div class="fam-icon"><img src="grpp.png" height="60" width="100%" alt="Communication Guidance"></div>
+          <h3>Communication Guidance</h3>
+          <!-- <p>We help families learn healthy, non-enabling communication patterns that support recovery rather than hinder it.</p> -->
+          <ul>
+            <li>Active listening techniques</li>
+            <li>Non-judgmental dialogue skills</li>
+            <li>Conflict de-escalation</li>
+            <li>Expressing concern constructively</li>
+            <li>Setting loving limits</li>
+          </ul>
+        </div>
+
+        <div class="fam-card">
+          <div class="fam-icon"><img src="emotional boundaries.png" height="60" width="100%" alt="Emotional Boundaries"></div>
+          <h3>Emotional Boundaries</h3>
+          <!-- <p>Understanding and establishing healthy emotional boundaries is critical for both the recovering individual and the family.</p> -->
+          <ul>
+            <li>Identifying enabling behaviours</li>
+            <li>Setting healthy limits with love</li>
+            <li>Managing guilt and resentment</li>
+            <li>Protecting your own wellbeing</li>
+            <li>Codependency awareness</li>
+          </ul>
+        </div>
+
+        <div class="fam-card">
+          <div class="fam-icon"><img src="routine support.png" height="60" width="100%" alt="Routine Support"></div>
+          <h3>Routine Support</h3>
+          <!-- <p>Helping families establish structured, supportive home environments that reinforce sobriety and stability.</p> -->
+          <ul>
+            <li>Creating recovery-friendly routines</li>
+            <li>Healthy meal & sleep schedules</li>
+            <li>Managing triggers at home</li>
+            <li>Encouraging positive activities</li>
+            <li>Celebrating small milestones</li>
+          </ul>
+        </div>
+
+        <div class="fam-card">
+          <div class="fam-icon"><img src="recovery awarness.png" height="60" width="100%" alt="Recovery Awareness"></div>
+          <h3>Recovery Awareness</h3>
+          <!-- <p>Educating families about addiction as a medical condition and the realities of the recovery journey.</p> -->
+          <ul>
+            <li>Understanding addiction science</li>
+            <li>Recognising relapse warning signs</li>
+            <li>Supporting without enabling</li>
+            <li>Long-term recovery expectations</li>
+            <li>Community resource navigation</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- FAMILY SESSION INFO -->
+      <div style="background:var(--royal);border-radius:20px;padding:48px;color:var(--white);margin-top:48px;text-align:center;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:28px;margin-bottom:12px;">Book a Family Consultation</h2>
+        <p style="color:rgba(255,255,255,.8);max-width:500px;margin:0 auto 28px;">Our family therapists are available for in-person and online sessions. You don't have to navigate this alone.</p>
+        <a href="https://wa.me/918799476113" target="_blank" class="btn btn-white">💬 Contact on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== WELLNESS PAGE ======================== -->
+<div id="wellness-page" class="page">
+  <div class="well-hero">
+    <h1>Wellness Activities</h1>
+    <p>Healing the whole person through purposeful, therapeutic activities for mind, body, and spirit.</p>
+  </div>
+  <div class="section">
+    <div class="section-inner">
+      <div class="well-grid">
+        <div class="well-card"><div class="well-img"><img src="yooggaa.jpeg" width="300" height="200" alt="Yoga & Breathwork"></div><div class="well-body"><h3>Yoga & Breathwork</h3><p>Daily therapeutic yoga sessions and pranayama to reduce anxiety, improve sleep, and restore physical balance.</p><span class="well-tag">Daily · All Levels</span></div></div>
+        <div class="well-card"><div class="well-img"><img src="medxitation.png" width="300" height="200" alt="Mindfulness Meditation"></div><div class="well-body"><h3>Mindfulness Meditation</h3><p>Guided meditation practices that build present-moment awareness and reduce cravings and emotional reactivity.</p><span class="well-tag">Morning & Evening</span></div></div>
+        <div class="well-card"><div class="well-img"><img src="artt.png" width="300" height="200" alt="Art Therapy"></div><div class="well-body"><h3>Art Therapy</h3><p>Creative expression through painting, drawing, and craft — a powerful outlet for emotions that words can't capture.</p><span class="well-tag">3x per Week</span></div></div>
+        <div class="well-card"><div class="well-img"><img src="aqquuaa.jpeg" width="300" height="200" alt="Aqua Therapy"></div><div class="well-body"><h3>Aqua Therapy</h3><p>Aqua therapy is a gentle, water-based treatment that promotes physical healing, relaxation, and overall well-being.</p><span class="well-tag">Weekly</span></div></div>
+        <div class="well-card"><div class="well-img"><img src="fitness exercise.png" width="300" height="200" alt="Fitness & Exercise"></div><div class="well-body"><h3>Fitness & Exercise</h3><p>Structured fitness programs to rebuild physical health, boost endorphins, and establish healthy daily routines.</p><span class="well-tag">Daily · Supervised</span></div></div>
+        <div class="well-card"><div class="well-img"><img src="naturfee.png" width="300" height="200" alt="Nature Therapy"></div><div class="well-body"><h3>Nature Therapy</h3><p>Guided walks, gardening, and outdoor activities that ground patients in nature and promote calm healing.</p><span class="well-tag">Twice Weekly</span></div></div>
+        <div class="well-card"><div class="well-img"><img src="jornalling.png" width="300" height="200" alt="Journaling & Writing"></div><div class="well-body"><h3>Journaling & Writing</h3><p>Therapeutic writing and reflective journaling to process experiences, track progress, and build self-insight.</p><span class="well-tag">Daily Practice</span></div></div>
+        <div class="well-card"><div class="well-img"><img src="nuttirtion.png" width="300" height="200" alt="Nutrition Counselling"></div><div class="well-body"><h3>Nutrition Counselling</h3><p>Personalised dietary guidance to heal the body, restore nutritional balance, and support mental wellness.</p><span class="well-tag">Weekly Sessions</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== GALLERY PAGE ======================== -->
+<div id="gallery-page" class="page">
+  <div class="gal-hero">
+    <h1>Our Gallery</h1>
+    <p>A glimpse into the healing spaces, activities, and community of Sober Life Wellness.</p>
+  </div>
+  <div class="section">
+    <div class="section-inner">
+      <div class="gal-grid">
+        <div class="gal-item"><img src="Residential Campus.png" alt="Our Residential Campus"><div class="gal-label">Our Residential Campus</div></div>
+        <div class="gal-item"><img src="Entry.png" alt="Entry Courtyard"><div class="gal-label">Entry Courtyard</div></div>
+        <div class="gal-item"><img src="Poolside.png" alt="PoolSide"><div class="gal-label">Poolside</div></div>
+        <div class="gal-item"><img src="Lobby.png" alt="Lobby"><div class="gal-label">Lobby</div></div>
+        <div class="gal-item"><img src="Conference hall.png" alt="Conference Hall"><div class="gal-label">Conference Hall</div></div>
+        <div class="gal-item"><img src="Bedroom 1.png" alt="Bedroom"><div class="gal-label">Bedroom </div></div>
+        <div class="gal-item"><img src="garden area.png" alt="Garden Area"><div class="gal-label">Garden Area</div></div>
+        <div class="gal-item"><img src="Courtyard main.png" alt="Central Courtyard"><div class="gal-label">Central Courtyard</div></div>
+        <!-- <div class="gal-item"><img src="music.jpg" alt="Music Therapy Room"><div class="gal-label">Music Therapy Room</div></div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== FOOTER ======================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Sober Life Wellness & Rehabilitation</div>
+        <p class="footer-desc">A premier rehabilitation and de-addiction center offering compassionate, evidence-based care to help individuals and families reclaim their lives.</p>
+        <div class="social-row" style="margin-top:20px;">
+          <a href="https://www.instagram.com/soberlife.rehab/" class="social-btn s-ig" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@Soberlifewellness" class="social-btn s-yt" title="YouTube">
+            <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61591864494799" class="social-btn s-fb" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://wa.me/918799476113" target="_blank" class="social-btn s-wa" title="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('about')">About Us</a>
+        <a href="#" onclick="showPage('packages')">Programs</a>
+        <a href="#" onclick="showPage('family')">Family Support</a>
+        <a href="#" onclick="showPage('wellness')">Wellness</a>
+        <a href="#" onclick="showPage('gallery')">Gallery</a>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <a href="mailto:soberliferehabcentre@gmail.com">📧 soberliferehabcentre@gmail.com</a>
+        <a href="tel:+918799476113">📞 +91 87994 76113</a>
+        <a href="https://wa.me/918799476113" target="_blank">💬 WhatsApp Us</a>
+        <p style="color:rgba(255,255,255,.5);font-size:13px;margin-top:8px;line-height:1.6;">SoberLife Wellness, Beside GSPL Terminal, Mirsapura Road, Sokhda<br>Vadodara, Gujarat 397451</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Sober Life Wellness & Rehabilitation Center. All rights reserved.</p>
+      <p style="color:rgba(255,255,255,.35);">Made with ❤️ for recovery</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<div class="wa-float">
+  <a class="wa-btn" href="https://wa.me/918799476113" target="_blank" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(name + '-page').classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('onclick') && a.getAttribute('onclick').indexOf("showPage('" + name + "')") === 0);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+</body>
+</html>
